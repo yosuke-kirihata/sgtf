@@ -1,4 +1,7 @@
-Branch is ubuntu  
+How to use the tag app  
+$ git clone https://github.com/tsukimoto/sgtf.git  
+$ cd sgtf  
+$ bundle exec rake db:migrate  
 
 1st Step  
 To make the Database  
