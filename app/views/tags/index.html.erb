@@ -1,0 +1,82 @@
+<!-- 本htmlファイルはbootstrapのサンプルを編集した物 -->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <!-- タブのタイトル -->
+    <title>Bootstrapの練習</title>
+    <!-- おまじない -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- cssファイルの読み込み -->
+    <!-- bootstrapはダウンロードしてくる -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- ※sample.cssは自製 -->
+    <link rel="stylesheet" href="sample.css" type="text/css">
+  </head>
+  <body>
+    <!-- 表示内でのタイトル -->
+    <h1 style="margin-left: 20px;">Bookmark</h1>
+    <!-- 新規作成・削除ボタンを右に寄せるためのマージン（要らないかも） -->
+    <div class="col-md-7">
+    </div>
+    <!-- 新規作成・削除ボタン（右寄せ） -->
+    <div class="col-md-5" align="right" style="margin-bottom: 20px;">
+      <div class="btn-group">
+	<button type="button" class="btn btn-lg btn-default">新規作成</button>
+	<button type="button" class="btn btn-lg btn-default">削除</button>
+      </div>
+    </div>
+    <div class="sample1">
+      <!-- タグ一覧を表示する部分（左端） -->
+      <div class="col-md-2 sidebar">
+	<div class="panel panel-primary">
+	  <!-- パネルタイトル -->
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Tags</h3>
+	  </div>
+	  <!-- パネルコンテンツ -->
+	  <div class="panel-body">
+	    <ul style="list-style:none;" class="sample4">
+	      <% @tags.each do |tag| %>
+	        <!-- ruby on railsの出番①（開始） -->
+                <li>
+                  <%= tag.name %>
+                  <%= link_to "[Edit]", edit_tag_path(tag.id) %>
+                  <%= link_to "[Delete]", tag_path(tag.id), method: :delete, data: {
+                    confirm: "aye you sure?" } %>
+		</li>
+	      <!-- ruby on railsの出番①（終了） -->
+	      <% end %>
+	    </ul>
+	      <%= form_for Tag.new do |f| %>
+                <%= f.text_field :name %>
+                <%= f.submit %>
+              <% end %>
+	  </div>
+	</div>
+      </div>
+      <!-- ブックマーク表示部分（右端） -->
+      <div class="col-md-10 sample3 main">
+	<!-- ruby on railsの出番②（開始） -->
+	<div class="sample2">
+	  <ul style="list-style:none;">
+	    <li> ブックマーク１ </li>
+	    <li> URL１ </li>
+	  </ul>
+	</div>
+	<div class="sample2">
+	  <ul style="list-style:none;">
+	    <li> ブックマーク２ </li>
+	    <li> URL２ </li>
+	  </ul>
+	</div>
+	<!-- ruby on railsの出番②（終了） -->
+      </div>
+    </div>
+
+    <!-- javascriptの読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
